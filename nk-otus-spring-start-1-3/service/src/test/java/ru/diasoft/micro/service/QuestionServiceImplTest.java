@@ -43,7 +43,6 @@ class QuestionServiceImplTest {
                 "\r\n" +
                 "Question: What's 5+5?" +
                 "\r\n";
-
         Assertions.assertEquals(expectedString, consoleOut.toString());
     }*/
 
