@@ -1,0 +1,6 @@
+spring:
+  messages:
+    basename: i18n/messages
+test:
+  passing-score: 4
+  file-name: "/questions"
