@@ -4,24 +4,35 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import ru.otus.dao.ConsoleDaoImpl;
 import ru.otus.dao.QuestionDao;
 import ru.otus.dao.ConsoleDao;
+import ru.otus.dao.QuestionDaoImpl;
 import ru.otus.domain.QuestionAnswer;
 
 import java.util.List;
 
 @Service
-@AllArgsConstructor
-@NoArgsConstructor
 public class QuestionServiceImpl implements QuestionService {
 
     @Value("${test.passing-score}")
-    private final int passingScore = 4;
+    private int passingScore = 4;
 
     @Value("${test.file-name}")
-    private final String file = "/questions.csv";
+    private String file = "/questions.csv";
     private QuestionDao questionDao;
     private ConsoleDao consoleDao;
+
+    public QuestionServiceImpl(QuestionDao questionDao, ConsoleDao consoleDao) {
+        this.questionDao = questionDao;
+        this.consoleDao = consoleDao;
+    }
+
+    public QuestionServiceImpl() {
+        this.file = "/questions.csv";
+        this.questionDao = new QuestionDaoImpl();
+        this.consoleDao = new ConsoleDaoImpl();
+    }
 
     /**
      * Метод спрашивает имя и фамилию, проводит тест по вопросам из CSV-файла и выводит результат.

@@ -8,6 +8,10 @@ public class ConsoleDaoImpl implements ConsoleDao {
 
     private Scanner in;
 
+    public ConsoleDaoImpl(){
+        this.in = new Scanner(System.in);
+    }
+
     /**
      * Метод для считывания ответов из консоли.
      */
